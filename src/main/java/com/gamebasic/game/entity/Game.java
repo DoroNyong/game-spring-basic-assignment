@@ -62,6 +62,7 @@ public class Game {
         this.status = status;
     }
 
+
     public boolean isFinished() {
         return status != GameStatus.PLAYING;
     }
