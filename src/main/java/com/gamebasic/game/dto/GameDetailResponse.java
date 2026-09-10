@@ -1,8 +1,10 @@
 package com.gamebasic.game.dto;
 
+import com.gamebasic.game.entity.Game;
 import com.gamebasic.game.entity.GamePhase;
 import com.gamebasic.game.entity.GameStatus;
 import com.gamebasic.runcard.dto.CardResponse;
+import com.gamebasic.runcard.entity.RunCard;
 import lombok.Getter;
 
 import java.util.List;
@@ -33,5 +35,21 @@ public class GameDetailResponse {
         this.phase = phase;
         this.status = status;
         this.deck = List.copyOf(deck);
+    }
+
+    public static GameDetailResponse of(Game game, List<RunCard> cards) {
+        List<CardResponse> deck = cards.stream()
+                .map(CardResponse::from)
+                .toList();
+
+        return new GameDetailResponse(
+                game.getId(),
+                game.getPlayerName(),
+                game.getCurrentHp(),
+                game.getCurrentFloor(),
+                game.getPhase(),
+                game.getStatus(),
+                deck
+        );
     }
 }

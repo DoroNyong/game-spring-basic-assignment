@@ -1,5 +1,6 @@
 package com.gamebasic.runcard.dto;
 
+import com.gamebasic.runcard.entity.RunCard;
 import lombok.Getter;
 
 @Getter
@@ -17,5 +18,13 @@ public class CardResponse {
         this.id = id;
         this.cardType = cardType;
         this.acquiredFloor = acquiredFloor;
+    }
+
+    public static CardResponse from(RunCard card) {
+        return new CardResponse(
+                card.getId(),
+                card.getCardType(),
+                card.getAcquiredFloor()
+        );
     }
 }
